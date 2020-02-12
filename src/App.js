@@ -18,24 +18,30 @@ constructor(props) {
     }
     return (
       <div className="App">
-        <h2>{this.state.headerText}</h2>
-        <h2>{this.state/contentText}</h2>
-       <Header />
-       <Content />
-       <Clock />
+        {/* <h2>{this.state.headerText}</h2>
+        <h2>{this.state/contentText}</h2> */}
+       <Header header={this.state.headerText} />
+       <Content content={this.state.contentText} />
+       {/* <Clock /> */}
+       {this.props.header}
+       {this.props.content}
           <h4 style = {myStyle}>Hello World!</h4>
           <p>{i==1 ? 'true' : 'false'}</p>
       </div>
     );
   }
 }
-
+ //setting default props
+//  App.defaultProps = {
+//    header: "default foy header...",
+//    content: "default for content..."
+//  }
 class Header extends Component {
   render(){
     return (
       <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
+        {this.props.header}
       </div>
     );
   }
@@ -116,6 +122,7 @@ class Content extends Component {
         {this.state.data.map((person, i) => <TableRow key={i} data={person} />)}
       </tbody>
     </table>
+    {this.props.content}
     </p>
     );
   }
