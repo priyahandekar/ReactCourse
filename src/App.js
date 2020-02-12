@@ -18,8 +18,8 @@ constructor(props) {
     }
     return (
       <div className="App">
-        {/* <h2>{this.state.headerText}</h2>
-        <h2>{this.state/contentText}</h2> */}
+        <h2>{this.state.headerText}</h2>
+        <h2>{this.state/contentText}</h2>
        <Header />
        <Content />
        <Clock />
