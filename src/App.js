@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 
@@ -84,33 +85,49 @@ class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {
-        id: 1,
-        name: 'pankaj',
-        age: 30
-      },
-      {
-        id: 2,
-        name: 'ausaf',
-        age: 28
-      },
-      {
-        id: 3,
-        name: 'priya',
-        age: 26
-      }
-    ]
+      data: [],
+      count: 0
+    //   data: [
+    //     {
+    //     id: 1,
+    //     name: 'pankaj',
+    //     age: 30
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'ausaf',
+    //     age: 28
+    //   },
+    //   {
+    //     id: 3,
+    //     name: 'priya',
+    //     age: 26
+    //   }
+    // ]
       
-    }
+    };
+  }
+
+  updateMyState = () => {
+    var counter = this.state.count;
+    counter++;
+     var item = 'Count - '+ counter;
+    // var myArray = this.state.data;
+    // myArray.push(item);
+    this.setState((prevState) => ({
+      data: [...this.state.data, item],
+      count: prevState.count + 1
+    }))
   }
   render(){
     return (
-      <p>
-      <h1>What is JSX!</h1>
-     In this lecture, we will learn JSX tags <code>src/App.js</code> and save to reload.
-    
-    <table>
+      <div className="App-intro">
+        <h1>Components API!</h1>
+        <p>In the lecture, we will go through components api</p>
+        <button onClick={this.updateMyState}>Click me</button>
+        <h4>State Data: {this.state.data}</h4>
+
+    {/* <table>
       <thead>
         <th>
           <td>ID</td>
@@ -123,8 +140,40 @@ class Content extends Component {
       </tbody>
     </table>
     {this.props.content}
-    </p>
-    );
+      <div>
+        <h4>Array: {this.props.propArray}</h4>
+        <h4>Boolean: {this.props.propBoolean ? "True" : "False" }</h4>
+        <h4>Function: {this.props.propFunc(5)}</h4>
+        <h4>Number: {this.props.propNumber}</h4>
+        <h4>String: {this.props.propString}</h4>
+        <h4>Object: {this.props.propObject.objectName1}</h4>
+        <h4>Object: {this.props.propObject.objectName2}</h4>
+        <h4>Object: {this.props.propObject.objectName3}</h4>
+      </div> */}
+    </div>
+    ); 
+  }
+}
+
+Content.propTypes = {
+  propArray: PropTypes.array.isRequired,
+  propBoolean: PropTypes.bool.isRequired,
+  propFunc: PropTypes.func,
+  propNumber: PropTypes.number,
+  propString: PropTypes.string,
+  propObject: PropTypes.object
+}
+
+Content.defaultProps = {
+  propArray: [1,2,3,4,5],
+  propBoolean: true,
+  propFunc: function(e) {return e},
+  propNumber: 1,
+  propString: "String value coming...",
+  propObject: {
+    objectName1: 'value1',
+    objectName2: 'value2',
+    objectName3: 'value3'
   }
 }
 
