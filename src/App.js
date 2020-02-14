@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -119,6 +120,15 @@ class Content extends Component {
       count: prevState.count + 1
     }))
   }
+
+  updateRandom = () => {
+    this.forceUpdate();    //forceUpdate() let you update the vaue iinside the render.
+  }
+
+  findDOM = () => {
+    var myDiv = document.getElementById('myDiv');
+    ReactDOM.findDOMNode(myDiv).style.color = 'red';
+  }
   render(){
     return (
       <div className="App-intro">
@@ -126,6 +136,10 @@ class Content extends Component {
         <p>In the lecture, we will go through components api</p>
         <button onClick={this.updateMyState}>Click me</button>
         <h4>State Data: {this.state.data}</h4>
+        <button onClick={this.updateRandom}>Random number</button>
+        <h4>random number is: {Math.random()}</h4>
+        <button onClick={this.findDOM}>Find DOM</button>
+        <div id="myDiv">This is my Div</div>
 
     {/* <table>
       <thead>
